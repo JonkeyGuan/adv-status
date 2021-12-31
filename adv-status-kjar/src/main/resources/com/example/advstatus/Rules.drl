@@ -1,0 +1,23 @@
+package com.example.advstatus;
+
+rule "暂停广告"
+    ruleflow-group "pause"
+    when
+        c: Campaign()
+    then
+        modify(c) {
+            setResult("暂停广告");
+        }
+        System.out.println("Rule fired : [" + drools.getRule().getName()+"]");
+end
+
+rule "开启广告/维持投放不变"
+    ruleflow-group "continue"
+    when
+        c: Campaign()
+    then
+        modify(c) {
+            setResult("开启广告/维持投放不变");
+        }
+        System.out.println("Rule fired : [" + drools.getRule().getName()+"]");
+end
